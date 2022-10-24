@@ -18,6 +18,9 @@ describe('alias', () => {
     expect(normalizeAliasMap({ '@/': 'src/' })).toEqual({ '@': 'src' });
     expect(normalizeAliasMap({ '@/*': 'src/*' })).toEqual({ '@': 'src' });
     expect(normalizeAliasMap({ '@/**/*': 'src/**/*' })).toEqual({ '@': 'src' });
+    expect(normalizeAliasMap({ '@app/**/*': 'src/app/**/*' })).toEqual({
+      '@app': 'src/app',
+    });
   });
 
   it('should resolveWithAlias', function () {
@@ -29,6 +32,9 @@ describe('alias', () => {
     );
     expect(resolveWithAlias('@/page/index', { '@': '/usr/src' })).toBe(
       '/usr/src/page/index',
+    );
+    expect(resolveWithAlias('@app/index', { '@app': '/usr/src/app' })).toBe(
+      '/usr/src/app/index',
     );
   });
 
@@ -58,5 +64,10 @@ describe('alias', () => {
         '@': '/usr/src',
       }),
     ).toBe('@/page/index');
+    expect(
+      resolveToAlias('/usr/src/app/index', {
+        '@app': '/usr/src/app',
+      }),
+    ).toBe('@app/index');
   });
 });
