@@ -2,6 +2,11 @@
   "name": "path-ops",
   "version": "1.0.0",
   "description": "Operators for node path.",
+  "keywords": [
+    "path",
+    "operators",
+    "alias"
+  ],
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -39,6 +44,5 @@
     "type": "git",
     "url": "git+ssh://git@github.com/yujinpan/path-ops.git"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
